@@ -1,1 +1,2 @@
 # Control-Core
+This project focuses on the development and implementation of advanced motion control strategies to maximize passenger comfort in autonomous driving scenarios. By utilizing nominal LQ (Linear Quadratic) and MPC (Model Predictive Control) frameworks, we aim to minimize physiological discomfort caused by lateral and longitudinal accelerations. The development will progress from isolated lateral control in MATLAB to a fully integrated, ISO-filtered multi-axis model within the CarMaker Simulink environment.
