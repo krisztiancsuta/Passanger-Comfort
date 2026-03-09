@@ -20,23 +20,8 @@ function K = LQR_synthetis(speed, Ts, Q, R)
 %    input  : delta (front-wheel steering angle)
 %  augmented with an integrator on e1 for zero steady-state tracking.
 
-    Caf = getBaseParamValue('Vehicle_CorneringStiffnessFrontAxle');
-    Car = getBaseParamValue('Vehicle_CorneringStiffnessRearAxle');
-    lf  = getBaseParamValue('Vehicle_CoGFrontWheelsLength');
-    lr  = getBaseParamValue('Vehicle_CoGRearWheelsLength');
-    m   = getBaseParamValue('Vehicle_Weight');
-    Iz  = getBaseParamValue('Vehicle_MomentofInertiaZ');
-    Vx  = speed;
-
-    %% Continuous-time state-space (error dynamics)
-    A = [0, 1,                              0,                       0; ...
-         0, -(2*Caf + 2*Car)/(m*Vx),        (2*Caf + 2*Car)/m,       (-2*lf*Caf + 2*lr*Car)/(m*Vx); ...
-         0, 0,                              0,                       1; ...
-         0, -(2*lf*Caf - 2*lr*Car)/(Iz*Vx), (2*lf*Caf - 2*lr*Car)/Iz, -(2*lf^2*Caf + 2*lr^2*Car)/(Iz*Vx)];
-
-    B1 = [0; 2*Caf/m; 0; 2*lf*Caf/Iz];
-
-    C = [1, 0, 0, 0];   % measure e1
+    %% Get lateral error dynamics from vehicle_model
+    [A, B1, C] = vehicle_model(speed);
 
     %% Augment with integrator on e1
     A_ext = [A, zeros(4, 1); -C, 0];
@@ -44,17 +29,4 @@ function K = LQR_synthetis(speed, Ts, Q, R)
 
     %% Discrete LQR
     K = lqrd(A_ext, B_ext, Q, R, Ts);
-end
-
-%% =======================================================================
-%  LOCAL HELPER
-%  =======================================================================
-function val = getBaseParamValue(name)
-%GETBASEPARAMVALUE  Read a Simulink.Parameter's .Value from the base workspace.
-    obj = evalin('base', name);
-    if isa(obj, 'Simulink.Parameter')
-        val = obj.Value;
-    else
-        val = obj;
-    end
 end

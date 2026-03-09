@@ -31,7 +31,7 @@ function lateral_controller_params()
     LateralControllers_SampleTime = createParam(0.033, 's','Sample Time');
 
     % — Design (linearisation) speed [m/s] -----------------------------
-    LateralControllers_DesignSpeed = createParam(100, 'm/s', 'Design speed for LQR linearisation');
+    LateralControllers_DesignSpeed = createParam(10, 'm/s', 'Design speed for LQR linearisation');
 
     % — LQR state-cost matrix Q  (5×5 diagonal) -----------------------
     %   States: [e1, de1, e2, de2, int_e1]
