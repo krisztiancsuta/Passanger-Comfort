@@ -1,4 +1,4 @@
-function K = LQR_synthetis(speed, Ts, Q, R)
+function K = LQR_synthesis(speed, Ts, Q, R)
 %LQR_SYNTHETIS  Compute discrete LQR gain for the lateral error dynamics.
 %
 %  K = LQR_synthetis(speed, Ts, Q, R)
@@ -21,7 +21,7 @@ function K = LQR_synthetis(speed, Ts, Q, R)
 %  augmented with an integrator on e1 for zero steady-state tracking.
 
     %% Get lateral error dynamics from vehicle_model
-    [A, B1, C] = vehicle_model(speed);
+    [A, B1, C, ~] = vehicle_model(speed);
 
     %% Augment with integrator on e1
     A_ext = [A, zeros(4, 1); -C, 0];

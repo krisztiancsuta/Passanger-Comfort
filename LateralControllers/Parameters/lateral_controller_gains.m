@@ -27,7 +27,7 @@ function lateral_controller_gains()
     %  2.  Compute the LQR feedback gain
     %      LQR_synthetis reads vehicle params from the base workspace.
     % ===================================================================
-    K = LQR_synthetis(Vdes, Ts, Q, R);
+    K = LQR_synthesis(Vdes, Ts, Q, R);
 
     %% ==================================================================
     %  3.  Export gain to the base workspace as Simulink.Parameter

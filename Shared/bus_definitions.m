@@ -1,4 +1,4 @@
-function BusDefinitions()
+function bus_definitions()
 %BUSDEFINITIONS  Create all Simulink Bus objects in the base workspace.
 %
 %  Usage:
