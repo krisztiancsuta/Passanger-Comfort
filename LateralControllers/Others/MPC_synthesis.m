@@ -41,7 +41,7 @@ function [Kmpc, Ky, H, Phi_F, Phi_R, A_e, B_e, C_e, Ad, Bd, Bd2, Cd] = MPC_synth
 
     %% MPC prediction matrices (augmented model built inside mpcgain)
     [Phi_Phi, Phi_F, Phi_R, A_e, B_e, C_e, ~, ~] = mpcgain(Ad, Bd, Cd, Nc, Np);
-
+    
     [~, n_in] = size(Bd);
 
     %% QP Hessian
@@ -50,6 +50,7 @@ function [Kmpc, Ky, H, Phi_F, Phi_R, A_e, B_e, C_e, Ad, Bd, Bd2, Cd] = MPC_synth
     %% Unconstrained receding-horizon gains (first control move only)
     Kmpc = H \ Phi_F;
     Ky   = H \ Phi_R;
+    
 
     Kmpc = Kmpc(1:n_in, :);   % first move — state feedback
     Ky   = Ky(1:n_in, :);     % first move — reference gain

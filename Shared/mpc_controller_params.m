@@ -26,20 +26,20 @@ function mpc_controller_params()
     % ===================================================================
 
     % — Sample time [s] ------------------------------------------------
-    MPC_SampleTime = createParam(0.033, 's', 'MPC sample time');
+    MPC_SampleTime = createParam(0.1, 's', 'MPC sample time');
 
     % — Design (linearisation) speed [m/s] -----------------------------
-    MPC_DesignSpeed = createParam(20, 'm/s', 'Design speed for MPC linearisation');
+    MPC_DesignSpeed = createParam(10, 'm/s', 'Design speed for MPC linearisation');
 
     % — Prediction horizon (number of steps) ---------------------------
-    MPC_Np = createParam(200, '', 'Prediction horizon length');
+    MPC_Np = createParam(100, '', 'Prediction horizon length');
 
     % — Control horizon (number of steps) ------------------------------
     MPC_Nc = createParam(100, '', 'Control horizon length');
 
     % — Control-increment penalty weight (rw) --------------------------
     %   Higher value → more conservative / smoother steering.
-    MPC_Rw = createParam(0.01, '', 'Control increment penalty weight');
+    MPC_Rw = createParam(5000, '', 'Control increment penalty weight');
 
     %% ==================================================================
     %  Export everything to the base workspace

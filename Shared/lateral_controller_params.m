@@ -36,10 +36,10 @@ function lateral_controller_params()
     % — LQR state-cost matrix Q  (5×5 diagonal) -----------------------
     %   States: [e1, de1, e2, de2, int_e1]
     %   Increase a weight to penalise that state more aggressively.
-    LateralControllers_Q = createParam(diag([4 1 1 1 60]), '', 'LQR state weighting matrix Q (5x5)');
+    LateralControllers_Q = createParam(diag([10 0.1 0.1 3 60]), '', 'LQR state weighting matrix Q (5x5)');
 
     % — LQR input-cost weight R ----------------------------------------
-    LateralControllers_R = createParam(10, '', 'LQR input weighting scalar R');
+    LateralControllers_R = createParam(100, '', 'LQR input weighting scalar R');
 
     %% ==================================================================
     %  Export everything to the base workspace

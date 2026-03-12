@@ -40,6 +40,7 @@ function mpc_controller_gains()
     [Kmpc, Ky, H, Phi_F, Phi_R, A_e, B_e, C_e, ~, ~, Bd2, ~] = ...
         MPC_synthesis(Vdes, Ts, Nc, Np, rw);
 
+
     %% ==================================================================
     %  3.  Export to base workspace as Simulink.Parameter objects
     % ===================================================================
@@ -55,6 +56,7 @@ function mpc_controller_gains()
     exportParam('MPC_PhiR',              Phi_R,  '', ...
         'Reference prediction matrix');
 
+ 
     exportParam('MPC_Ae',   A_e,  '', 'Augmented state matrix');
     exportParam('MPC_Be',   B_e,  '', 'Augmented input matrix');
     exportParam('MPC_Ce',   C_e,  '', 'Augmented output matrix');
