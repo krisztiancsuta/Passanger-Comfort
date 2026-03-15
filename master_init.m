@@ -84,6 +84,9 @@ function master_init()
     safeRun('mpc_controller_params',      'MPC controller parameters');
     safeRun('mpc_controller_gains',       'MPC controller gains');
 
+    safeRun('longitudinal_mpc_params',    'Longitudinal MPC parameters');
+    safeRun('longitudinal_mpc_gains',     'Longitudinal MPC gains');
+
     fprintf('========================================\n');
     fprintf(' Initialisation complete.\n');
     fprintf('========================================\n\n');

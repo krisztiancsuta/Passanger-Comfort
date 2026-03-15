@@ -49,18 +49,18 @@ function mpc_controller_gains()
     exportParam('MPC_ReferenceGainKy',   Ky,     '', ...
         'Unconstrained MPC reference tracking gain');
 
-    exportParam('MPC_H',                 H,      '', ...
-        'QP Hessian matrix (Phi''*Q*Phi + rw*I)');
-    exportParam('MPC_PhiF',              Phi_F,  '', ...
-        'Free-response prediction matrix');
-    exportParam('MPC_PhiR',              Phi_R,  '', ...
-        'Reference prediction matrix');
+    %exportParam('MPC_H',                 H,      '', ...
+    %    'QP Hessian matrix (Phi''*Q*Phi + rw*I)');
+    %exportParam('MPC_PhiF',              Phi_F,  '', ...
+    %    'Free-response prediction matrix');
+    %exportParam('MPC_PhiR',              Phi_R,  '', ...
+    %    'Reference prediction matrix');
 
  
-    exportParam('MPC_Ae',   A_e,  '', 'Augmented state matrix');
-    exportParam('MPC_Be',   B_e,  '', 'Augmented input matrix');
-    exportParam('MPC_Ce',   C_e,  '', 'Augmented output matrix');
-    exportParam('MPC_Bd2',  Bd2,  '', 'Discrete disturbance matrix (yaw rate from curvature)');
+    %exportParam('MPC_Ae',   A_e,  '', 'Augmented state matrix');
+    %exportParam('MPC_Be',   B_e,  '', 'Augmented input matrix');
+    %exportParam('MPC_Ce',   C_e,  '', 'Augmented output matrix');
+    %exportParam('MPC_Bd2',  Bd2,  '', 'Discrete disturbance matrix (yaw rate from curvature)');
 
     %% ==================================================================
     %  4.  Summary
