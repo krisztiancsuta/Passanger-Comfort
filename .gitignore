@@ -1,0 +1,22 @@
+# Simulink cache files
+*.slxc
+
+# Simulink project folder (generated/temporary)
+slprj/
+
+# MATLAB temporary files
+*.asv
+*.m~
+*.autosave
+
+# Simulink autosave
+*.slx.r*
+*.mdl.r*
+
+# MAT-file temporaries
+*.mat~
+
+# OS temporary files
+Thumbs.db
+Desktop.ini
+.DS_Store
