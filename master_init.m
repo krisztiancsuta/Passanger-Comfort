@@ -78,11 +78,11 @@ function master_init()
 %  5.  Run controller-specific parameter scripts
 %       — these depend on the shared parameters loaded above.
 % -----------------------------------------------------------------------
-    safeRun('lateral_controller_params',  'Lateral controller parameters');
-    safeRun('lateral_controller_gains',   'Lateral controller gains');
+    safeRun('lateral_LQR_controller_params',  'Lateral controller parameters');
+    safeRun('lateral_LQR_controller_gains',   'Lateral controller gains');
 
-    safeRun('mpc_controller_params',      'MPC controller parameters');
-    safeRun('mpc_controller_gains',       'MPC controller gains');
+    safeRun('lateral_mpc_controller_params',      'MPC controller parameters');
+    safeRun('lateral_mpc_controller_gains',       'MPC controller gains');
 
     safeRun('longitudinal_mpc_params',    'Longitudinal MPC parameters');
     safeRun('longitudinal_mpc_gains',     'Longitudinal MPC gains');

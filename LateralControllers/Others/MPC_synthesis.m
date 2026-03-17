@@ -1,7 +1,7 @@
-function [Kmpc, Ky, H, Phi_F, Phi_R, A_e, B_e, C_e, Ad, Bd, Bd2, Cd] = MPC_synthesis(speed, Ts, Nc, Np, rw)
+function [Kmpc, Ky, H, Phi_Phi, Phi_F, Phi_R, F, Phi, A_e, B_e, C_e, Ad, Bd, Bd2, Cd] = MPC_synthesis(speed, Ts, Nc, Np, rw)
 %MPC_SYNTHESIS  Compute MPC gains and prediction matrices for lateral error dynamics.
 %
-%  [Kmpc, Ky, H, Phi_F, Phi_R, A_e, B_e, C_e, Ad, Bd, Bd2, Cd] = ...
+%  [Kmpc, Ky, H, Phi_Phi, Phi_F, Phi_R, F, Phi, A_e, B_e, C_e, Ad, Bd, Bd2, Cd] = ...
 %      MPC_synthesis(speed, Ts, Nc, Np, rw)
 %
 %  Inputs:
@@ -18,8 +18,11 @@ function [Kmpc, Ky, H, Phi_F, Phi_R, A_e, B_e, C_e, Ad, Bd, Bd2, Cd] = MPC_synth
 %    Kmpc        — 1×(n+m1) augmented-state feedback gain
 %    Ky          — 1×m1    reference tracking gain
 %    H           — Nc×Nc   QP Hessian (Phi_Phi + rw*I)
-%    Phi_F       — Np×(n+m1) free-response prediction matrix
+%    Phi_Phi     — (Nc*n_in)×(Nc*n_in) quadratic cost matrix Phi'*Q*Phi
+%    Phi_F       — (Nc*n_in)×(n+m1) free-response prediction matrix
 %    Phi_R       — Np×m1   reference prediction matrix
+%    F           — (Np*m1)×(n+m1) free output evolution matrix
+%    Phi         — (Np*m1)×(Nc*n_in) control prediction matrix
 %    A_e, B_e, C_e — augmented state-space matrices
 %    Ad, Bd, Bd2, Cd — discrete plant matrices (control & disturbance inputs)
 %
@@ -40,7 +43,7 @@ function [Kmpc, Ky, H, Phi_F, Phi_R, A_e, B_e, C_e, Ad, Bd, Bd2, Cd] = MPC_synth
     Cd  = d_ss.C;
 
     %% MPC prediction matrices (augmented model built inside mpcgain)
-    [Phi_Phi, Phi_F, Phi_R, A_e, B_e, C_e, ~, ~] = mpcgain(Ad, Bd, Cd, Nc, Np);
+    [Phi_Phi, Phi_F, Phi_R, A_e, B_e, C_e, F, Phi] = mpcgain(Ad, Bd, Cd, Nc, Np);
     
     [~, n_in] = size(Bd);
 

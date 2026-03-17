@@ -15,7 +15,7 @@ function longitudinal_mpc_params()
     %% Controller tuning parameters
     LongitudinalMPC_SampleTime = createParam(0.033, 's', 'Longitudinal MPC sample time');
     LongitudinalMPC_Np = createParam(100, '', 'Prediction horizon length');
-    LongitudinalMPC_Nc = createParam(80, '', 'Control horizon length');
+    LongitudinalMPC_Nc = createParam(5, '', 'Control horizon length');
     LongitudinalMPC_Rw = createParam(0.00001, '', 'Control increment penalty weight');
 
     % Use a constant linear damping term as requested.

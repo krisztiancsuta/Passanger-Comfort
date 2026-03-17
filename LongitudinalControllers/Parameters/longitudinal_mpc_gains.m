@@ -23,7 +23,7 @@ function longitudinal_mpc_gains()
     blin = getBaseParamValue('LongitudinalMPC_LinearDragCoeff');
 
     %% Compute gains and matrices
-    [Kmpc, Ky, H, Phi_F, Phi_R, A_e, B_e, C_e, Ad, Bd, Cd] = ...
+    [Kmpc, Ky, H, Phi_F, Phi_R,F, Phi] = ...
         Longitudinal_MPC_synthesis(Ts, Nc, Np, rw, mass, blin);
 
     %% Export to base workspace as Simulink.Parameter objects
@@ -32,20 +32,14 @@ function longitudinal_mpc_gains()
     exportParam('LongitudinalMPC_ReferenceGainKy', Ky, '', ...
         'Unconstrained longitudinal MPC reference gain');
 
-    %exportParam('LongitudinalMPC_H', H, '', ...
-    %    'Longitudinal MPC Hessian matrix');
-    %exportParam('LongitudinalMPC_PhiF', Phi_F, '', ...
-    %    'Longitudinal MPC free-response prediction matrix');
-    %exportParam('LongitudinalMPC_PhiR', Phi_R, '', ...
-    %    'Longitudinal MPC reference prediction matrix');
-
-    %exportParam('LongitudinalMPC_Ae', A_e, '', 'Augmented state matrix');
-    %exportParam('LongitudinalMPC_Be', B_e, '', 'Augmented input matrix');
-    %exportParam('LongitudinalMPC_Ce', C_e, '', 'Augmented output matrix');
-
-    %exportParam('LongitudinalMPC_Ad', Ad, '', 'Discrete longitudinal state matrix');
-    %exportParam('LongitudinalMPC_Bd', Bd, '', 'Discrete longitudinal input matrix');
-    %exportParam('LongitudinalMPC_Cd', Cd, '', 'Discrete longitudinal output matrix');
+    exportParam('LongitudinalMPC_H', H, '', ...
+        'Longitudinal MPC Hessian matrix');
+    exportParam('LongitudinalMPC_PhiF', Phi_F, '', ...
+        'Longitudinal MPC free-response prediction matrix');
+    exportParam('LongitudinalMPC_PhiR', Phi_R, '', ...
+        'Longitudinal MPC reference prediction matrix');
+    exportParam('LongitudinalMPC_Phi', Phi, '','');
+    exportParam('LongitudinalMPC_F', F, '','');
 
     %% Summary
     fprintf('  Ts = %.4f s, Np = %d, Nc = %d, rw = %.6f\n', Ts, Np, Nc, rw);

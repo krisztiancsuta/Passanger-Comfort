@@ -1,4 +1,4 @@
-function [Kmpc, Ky, H, Phi_F, Phi_R, A_e, B_e, C_e, Ad, Bd, Cd] = ...
+function [Kmpc, Ky, H, Phi_F, Phi_R,F,Phi] = ...
 	Longitudinal_MPC_synthesis(Ts, Nc, Np, rw, mass, b_lin)
 %LONGITUDINAL_MPC_SYNTHESIS  Build longitudinal MPC gains and matrices.
 %
@@ -35,7 +35,7 @@ function [Kmpc, Ky, H, Phi_F, Phi_R, A_e, B_e, C_e, Ad, Bd, Cd] = ...
 	Bd = d_ss.B;
 	Cd = d_ss.C;
 
-	[Phi_Phi, Phi_F, Phi_R, A_e, B_e, C_e, ~, ~] = mpcgain(Ad, Bd, Cd, Nc, Np);
+	[Phi_Phi, Phi_F, Phi_R, ~, ~, ~ , F, Phi] = mpcgain(Ad, Bd, Cd, Nc, Np);
 	[~, n_in] = size(Bd);
 
 	H = Phi_Phi + rw * eye(Nc * n_in);
